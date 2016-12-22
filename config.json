@@ -1,0 +1,29 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+
+    "description": "This is an example configuration file with one Particle platform and 1 accessory",
+
+    "platforms": [
+        {
+            "platform": "Particle",
+            "name": "Particle Devices",
+                        "access_token": "###access token###",
+                        "cloudurl": "https://api.spark.io/v1/devices/",
+                        "devices": [
+                                {
+                                        "accessory": "Light",
+                                        "name": "Light",
+                                        "deviceid": "###device id###",
+                                        "type": "LIGHT",
+                                        "function_name": "led",
+                                        "args": "ping"
+                                }
+                        ]
+        }
+    ]
+}
