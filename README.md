@@ -1,2 +1,2 @@
 # homekit
-homekit projects
+homekit integration with Raspberry Pi and Particle Photon
