@@ -56,14 +56,14 @@ int ledToggle1(String command) {
         digitalWrite(led3, HIGH);
         delay(500);
         digitalWrite(led3, LOW);
-        onoff = true;
+        onoff1 = true;
         return 1;
     }
     else {
         digitalWrite(led4, HIGH);
         delay(500);
         digitalWrite(led4, LOW);
-        onoff = false;
+        onoff1 = false;
         return 0;
     }
 }
