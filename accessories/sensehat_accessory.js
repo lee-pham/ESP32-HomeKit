@@ -98,19 +98,6 @@ exports.accessory = {
 		manfDescription: "Turn On the Light",
 		designedMaxLength: 1    
     },{
-    	cType: types.HUE_CTYPE,
-    	onUpdate: function(value) { console.log("Change:",value); execute("Test Accessory 1", "Light - Hue", value); },
-    	perms: ["pw","pr","ev"],
-		format: "int",
-		initialValue: 0,
-		supportEvents: false,
-		supportBonjour: false,
-		manfDescription: "Doesn’t actually adjust Hue of Light",
-		designedMinValue: 0,
-		designedMaxValue: 360,
-		designedMinStep: 1,
-		unit: "arcdegrees"
-    },{
     	cType: types.BRIGHTNESS_CTYPE,
     	onUpdate: function(value) { console.log("Change:",value); execute("Test Accessory 1", "Light - Brightness", value); },
     	perms: ["pw","pr","ev"],
@@ -119,19 +106,6 @@ exports.accessory = {
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Doesn’t actually adjust Brightness of Light",
-		designedMinValue: 0,
-		designedMaxValue: 100,
-		designedMinStep: 1,
-		unit: "%"
-    },{
-    	cType: types.SATURATION_CTYPE,
-    	onUpdate: function(value) { console.log("Change:",value); execute("Test Accessory 1", "Light - Saturation", value); },
-    	perms: ["pw","pr","ev"],
-		format: "int",
-		initialValue: 0,
-		supportEvents: false,
-		supportBonjour: false,
-		manfDescription: "Doesn’t actually adjust Saturation of Light",
 		designedMinValue: 0,
 		designedMaxValue: 100,
 		designedMinStep: 1,
