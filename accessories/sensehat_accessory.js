@@ -16,7 +16,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Light 1",
+		initialValue: "RPi",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Bla",
