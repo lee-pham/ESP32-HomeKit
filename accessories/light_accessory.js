@@ -114,7 +114,7 @@ lightAccessory
     LightController.setBrightness(value);
     callback();
     pyshell.send(value);
-
+    console.log(value);
     /*pyshell.end(function (err) {
                 if (err) throw err;
                 console.log('finished');
