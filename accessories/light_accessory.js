@@ -12,7 +12,8 @@ var LightController = {
   model: "v1.0", //model (optional)
   serialNumber: "A12S345KGB", //serial number (optional)
 
-  power: false, //curent power status
+  power: false, //curent power 
+  
   brightness: 100, //current brightness
 
   outputLogs: true, //output logs
@@ -63,7 +64,7 @@ lightAccessory
 
 // listen for the "identify" event for this Accessory
 lightAccessory.on('identify', function(paired, callback) {
-  LightController.identify();
+  LightController.identify(); 
   callback();
 });
 
@@ -80,6 +81,13 @@ lightAccessory
     // If it's going to take more than 1s to finish the request, try to invoke the callback
     // after getting the request instead of after finishing it. This avoids blocking other
     // requests from HomeKit.
+    if (value) {
+      PythonShell.run('light1.py', function (err) {
+			});
+    } else {
+    	PythonShell.run('light0.py', function (err) {    				
+    	});
+    }
     callback();
   })
   // We want to intercept requests for our current power state so we can query the hardware itself instead of
