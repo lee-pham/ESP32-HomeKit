@@ -2,6 +2,7 @@ var Accessory = require('../').Accessory;
 var Service = require('../').Service;
 var Characteristic = require('../').Characteristic;
 var uuid = require('../').uuid;
+var PythonShell = require('python-shell');
 
 var LightController = {
   name: "Simple Light", //name of accessory
