@@ -83,7 +83,6 @@ lightAccessory
     // after getting the request instead of after finishing it. This avoids blocking other
     // requests from HomeKit.
     callback();
-    console.log('does stuff get executed here?');
     if (value) {
     PythonShell.run('light1.py', function (err) {
                     });
@@ -115,11 +114,6 @@ lightAccessory
     LightController.setBrightness(value);
     callback();
     pyshell.send(value);
-    
-    pyshell.on('message', function (message) {
-               // received a message sent from the Python script (a simple "print" statement)
-               console.log(message);
-               });
 
     /*pyshell.end(function (err) {
                 if (err) throw err;
