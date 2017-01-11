@@ -5,19 +5,17 @@ var uuid = require('../').uuid;
 var PythonShell = require('python-shell');
 
 var LightController = {
-  name: "Simple Light", //name of accessory
+  name: "SenseHat", //name of accessory
   pincode: "031-45-154",
-  username: "FA:3C:ED:5A:1A:1A", // MAC like address used by HomeKit to differentiate accessories. 
-  manufacturer: "HAP-NodeJS", //manufacturer (optional)
+  username: "FA:6C:ED:5A:1A:1A", // MAC like address used by HomeKit to differentiate accessories. 
+  manufacturer: "The Raspberry Pi Foundation", //manufacturer (optional)
   model: "v1.0", //model (optional)
   serialNumber: "A12S345KGB", //serial number (optional)
 
   power: false, //curent power status
   brightness: 100, //current brightness
-  hue: 0, //current hue
-  saturation: 0, //current saturation
 
-  outputLogs: false, //output logs
+  outputLogs: true, //output logs
 
   setPower: function(status) { //set power of accessory
     if(this.outputLogs) console.log("Turning the '%s' %s", this.name, status ? "on" : "off");
@@ -37,26 +35,6 @@ var LightController = {
   getBrightness: function() { //get brightness
     if(this.outputLogs) console.log("'%s' brightness is %s", this.name, this.brightness);
     return this.brightness;
-  },
-
-  setSaturation: function(saturation) { //set brightness
-    if(this.outputLogs) console.log("Setting '%s' saturation to %s", this.name, saturation);
-    this.saturation = saturation;
-  },
-
-  getSaturation: function() { //get brightness
-    if(this.outputLogs) console.log("'%s' saturation is %s", this.name, this.saturation);
-    return this.saturation;
-  },
-
-  setHue: function(hue) { //set brightness
-    if(this.outputLogs) console.log("Setting '%s' hue to %s", this.name, hue);
-    this.hue = hue;
-  },
-
-  getHue: function() { //get hue
-    if(this.outputLogs) console.log("'%s' hue is %s", this.name, this.hue);
-    return this.hue;
   },
 
   identify: function() { //identify the accessory
@@ -128,28 +106,4 @@ lightAccessory
   })
   .on('get', function(callback) {
     callback(null, LightController.getBrightness());
-  });
-
-// also add an "optional" Characteristic for Saturation
-lightAccessory
-  .getService(Service.Lightbulb)
-  .addCharacteristic(Characteristic.Saturation)
-  .on('set', function(value, callback) {
-    LightController.setSaturation(value);
-    callback();
-  })
-  .on('get', function(callback) {
-    callback(null, LightController.getSaturation());
-  });
-
-// also add an "optional" Characteristic for Hue
-lightAccessory
-  .getService(Service.Lightbulb)
-  .addCharacteristic(Characteristic.Hue)
-  .on('set', function(value, callback) {
-    LightController.setHue(value);
-    callback();
-  })
-  .on('get', function(callback) {
-    callback(null, LightController.getHue());
   });
