@@ -7,8 +7,8 @@ var pyshell = new PythonShell('bright.py');
 
 var LightController = {
   name: "SenseHat", //name of accessory
-  pincode: "031-45-154",
-  username: "FA:6C:ED:5A:1A:1A", // MAC like address used by HomeKit to differentiate accessories. 
+  pincode: "000-00-000",
+  username: "FA:7C:ED:5A:1A:1A", // MAC like address used by HomeKit to differentiate accessories. 
   manufacturer: "The Raspberry Pi Foundation", //manufacturer (optional)
   model: "v1.0", //model (optional)
   serialNumber: "A12S345KGB", //serial number (optional)
