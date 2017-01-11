@@ -3,6 +3,7 @@ var Service = require('../').Service;
 var Characteristic = require('../').Characteristic;
 var uuid = require('../').uuid;
 var PythonShell = require('python-shell');
+var pyshell = new PythonShell('bright.py');
 
 var LightController = {
   name: "SenseHat", //name of accessory
@@ -110,6 +111,12 @@ lightAccessory
   .addCharacteristic(Characteristic.Brightness)
   .on('set', function(value, callback) {
     LightController.setBrightness(value);
+    pyshell.send(value);
+    pyshell.end(function (err) {
+	    if (err) throw err;
+	    console.log('finished');
+    });
+
     callback();
   })
   .on('get', function(callback) {
