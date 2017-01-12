@@ -8,10 +8,10 @@ var pyshell = new PythonShell('rgb.py');
 var LightController = {
   name: "Sense HAT", //name of accessory
   pincode: "000-00-000",
-  username: "FA:3C:ED:5A:4A:1A", // MAC like address used by HomeKit to differentiate accessories. 
+  username: "FA:7C:ED:5A:4A:1A", // MAC like address used by HomeKit to differentiate accessories. 
   manufacturer: "Raspberry Pi Foundation", //manufacturer (optional)
   model: "Version 1.0", //model (optional)
-  serialNumber: "A12S345KGB", //serial number (optional)
+  serialNumber: "ATTINY88-MUR", //serial number (optional)
 
   power: false, //curent power status
   brightness: 100, //current brightness
