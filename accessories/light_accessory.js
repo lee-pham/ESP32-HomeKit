@@ -86,7 +86,7 @@ lightAccessory
     if (value) {
     PythonShell.run('light1.py', function (err) {
                     });
-    pyshell.send(getBrightness());
+    pyshell.send(LightController.getBrightness());
     } else {
     PythonShell.run('light0.py', function (err) {
                     });
