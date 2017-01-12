@@ -42,8 +42,8 @@ getBrightness: function() { //get brightness
 identify: function() { //identify the accessory
     if(this.outputLogs) console.log("Identify the '%s'", this.name);
 }
-}
 
+}
 // Generate a consistent UUID for our light Accessory that will remain the same even when
 // restarting our server. We use the `uuid.generate` helper function to create a deterministic
 // UUID based on an arbitrary "namespace" and the word "light".
@@ -76,7 +76,7 @@ lightAccessory
 .getCharacteristic(Characteristic.On)
 .on('set', function(value, callback) {
     LightController.setPower(value);
-    
+ 
     // Our light is synchronous - this value has been successfully set
     // Invoke the callback when you finished processing the request
     // If it's going to take more than 1s to finish the request, try to invoke the callback
@@ -84,14 +84,11 @@ lightAccessory
     // requests from HomeKit.
     callback();
     if (value) {
-    PythonShell.run('light1.py', function (err) {
-                    });
-    pyshell.send(LightController.getBrightness());
+        pyshell.send(LightController.getBrightness());
     } else {
-    PythonShell.run('light0.py', function (err) {
-                    });
+        PythonShell.run('light0.py', function (err) {
+        });
     }
-
     })
 // We want to intercept requests for our current power state so we can query the hardware itself instead of
 // allowing HAP-NodeJS to return the cached Characteristic.value.
