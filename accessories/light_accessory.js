@@ -17,7 +17,7 @@ power: false, //curent power
     
 brightness: 255, //current brightness
     
-outputLogs: true, //output logs
+outputLogs: false, //output logs
     
 setPower: function(status) { //set power of accessory
     if(this.outputLogs) console.log("Turning the '%s' %s", this.name, status ? "on" : "off");
