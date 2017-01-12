@@ -15,7 +15,7 @@ serialNumber: "A12S345KGB", //serial number (optional)
     
 power: false, //curent power
     
-brightness: 100, //current brightness
+brightness: 255, //current brightness
     
 outputLogs: true, //output logs
     
@@ -86,6 +86,7 @@ lightAccessory
     if (value) {
     PythonShell.run('light1.py', function (err) {
                     });
+    pyshell.send(getBrightness());
     } else {
     PythonShell.run('light0.py', function (err) {
                     });
@@ -114,12 +115,6 @@ lightAccessory
     LightController.setBrightness(value);
     callback();
     pyshell.send(value);
-    console.log(value);
-    /*pyshell.end(function (err) {
-                if (err) throw err;
-                console.log('finished');
-                });
-    */
     })
 .on('get', function(callback) {
     callback(null, LightController.getBrightness());
