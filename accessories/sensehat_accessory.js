@@ -6,7 +6,7 @@ var PythonShell = require('python-shell');
 var pyshell = new PythonShell('rgb.py');
 
 var LightController = {
-  name: "Simple Light", //name of accessory
+  name: "Sense HAT", //name of accessory
   pincode: "000-00-000",
   username: "FA:3C:ED:5A:4A:1A", // MAC like address used by HomeKit to differentiate accessories. 
   manufacturer: "Raspberry Pi Foundation", //manufacturer (optional)
@@ -106,7 +106,7 @@ lightAccessory
     callback();
     if (value) {
 	    pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
-	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
+    } else {
 	    PythonShell.run('light0.py', function (err) {
 	    });
     }
@@ -133,7 +133,6 @@ lightAccessory
     LightController.setBrightness(value);
     callback();
   pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
-	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getBrightness());
@@ -147,7 +146,6 @@ lightAccessory
     LightController.setSaturation(value);
     callback();
     pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
-	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getSaturation());
@@ -161,7 +159,6 @@ lightAccessory
     LightController.setHue(value);
     callback();
     pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
-	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getHue());
