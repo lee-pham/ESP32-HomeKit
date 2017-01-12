@@ -105,9 +105,8 @@ lightAccessory
     // requests from HomeKit.
     callback();
     if (value) {
-	    pyshell.send([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
-	    console.log([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
-    } else {
+	    pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
+	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
 	    PythonShell.run('light0.py', function (err) {
 	    });
     }
@@ -133,8 +132,8 @@ lightAccessory
   .on('set', function(value, callback) {
     LightController.setBrightness(value);
     callback();
-    pyshell.send([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
-    console.log([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
+  pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
+	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getBrightness());
@@ -147,8 +146,8 @@ lightAccessory
   .on('set', function(value, callback) {
     LightController.setSaturation(value);
     callback();
-    pyshell.send([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
-    console.log([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
+    pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
+	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getSaturation());
@@ -161,8 +160,8 @@ lightAccessory
   .on('set', function(value, callback) {
     LightController.setHue(value);
     callback();
-    pyshell.send([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
-    console.log([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]);
+    pyshell.send(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
+	    console.log(JSON.stringify([LightController.getHue(),LightController.getSaturation(),LightController.getBrightness()]));
   })
   .on('get', function(callback) {
     callback(null, LightController.getHue());
