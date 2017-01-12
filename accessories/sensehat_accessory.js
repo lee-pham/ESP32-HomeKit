@@ -8,7 +8,7 @@ var pyshell = new PythonShell('rgb.py');
 var LightController = {
   name: "Sense HAT", //name of accessory
   pincode: "000-00-000",
-  username: "FA:7C:ED:5A:4A:1A", // MAC like address used by HomeKit to differentiate accessories. 
+  username: "FA:8C:ED:5A:4A:1A", // MAC like address used by HomeKit to differentiate accessories. 
   manufacturer: "Raspberry Pi Foundation", //manufacturer (optional)
   model: "Version 1.0", //model (optional)
   serialNumber: "ATTINY88-MUR", //serial number (optional)
@@ -88,6 +88,8 @@ lightAccessory
 lightAccessory.on('identify', function(paired, callback) {
   LightController.identify();
   callback();
+  PythonShell.run('identify.py', function (err) {
+  });
 });
 
 // Add the actual Lightbulb Service and listen for change events from iOS.
