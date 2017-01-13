@@ -18,8 +18,8 @@ getTemperature: function() {
 randomizeTemperature: function() {
     pyshell.on('message', function (message) {
                TEMP_SENSOR.currentTemperature = parseInt(message);
+        TEMP_SENSOR.currentTemperature = Math.round(Math.random() * 100);
     });
-    console.log('here');
 }
 }
 
