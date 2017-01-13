@@ -5,16 +5,16 @@ var uuid = require('../').uuid;
 var PythonShell = require('python-shell');
 var pyshell = new PythonShell('temp.py');
 
-// here's a fake temperature sensor device that we'll expose to HomeKit
-var FAKE_SENSOR = {
-  currentTemperature: 50,
+// here's a temperature sensor device that we'll expose to HomeKit
+var TEMP_SENSOR = {
+  currentTemperature: 23,
   getTemperature: function() { 
     console.log("Getting the current temperature!");
-    return FAKE_SENSOR.currentTemperature;
+    return TEMP_SENSOR.currentTemperature;
   },
   randomizeTemperature: function() {
     // randomize temperature to a value between 0 and 100
-    FAKE_SENSOR.currentTemperature = Math.round(Math.random() * 100);
+    TEMP_SENSOR.currentTemperature = Math.round(Math.random() * 100);
   }
 }
 
@@ -24,7 +24,7 @@ var FAKE_SENSOR = {
 // a deterministic UUID based on an arbitrary "namespace" and the string "temperature-sensor".
 var sensorUUID = uuid.generate('hap-nodejs:accessories:temperature-sensor');
 
-// This is the Accessory that we'll return to HAP-NodeJS that represents our fake lock.
+// This is the Accessory that we'll return to HAP-NodeJS that represents our sensor.
 var sensor = exports.accessory = new Accessory('Temperature Sensor', sensorUUID);
 
 // Add properties for publishing (in case we're using Core.js and not BridgedCore.js)
@@ -39,17 +39,17 @@ sensor
   .on('get', function(callback) {
     
     // return our current value
-    callback(null, FAKE_SENSOR.getTemperature());
+    callback(null, TEMP_SENSOR.getTemperature());
   });
 
 // randomize our temperature reading every 3 seconds
 setInterval(function() {
   
-  FAKE_SENSOR.randomizeTemperature();
+  TEMP_SENSOR.randomizeTemperature();
   
   // update the characteristic value so interested iOS devices can get notified
   sensor
     .getService(Service.TemperatureSensor)
-    .setCharacteristic(Characteristic.CurrentTemperature, FAKE_SENSOR.currentTemperature);
+    .setCharacteristic(Characteristic.CurrentTemperature, TEMP_SENSOR.currentTemperature);
   
 }, 3000);
