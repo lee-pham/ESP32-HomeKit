@@ -14,7 +14,12 @@ var TEMP_SENSOR = {
   },
   randomizeTemperature: function() {
     // randomize temperature to a value between 0 and 100
-    TEMP_SENSOR.currentTemperature = Math.round(Math.random() * 100);
+    pyshell.on('message', function (message) {
+           
+      console.log(message);
+      TEMP_SENSOR.currentTemperature = parseInt(message);
+
+    });
   }
 }
 
