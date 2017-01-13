@@ -7,20 +7,20 @@ var pyshell = new PythonShell('temp.py');
 
 // here's a temperature sensor device that we'll expose to HomeKit
 var TEMP_SENSOR = {
-  currentTemperature: 23,
-  getTemperature: function() { 
+
+currentTemperature: 0,
+
+getTemperature: function() {
     console.log("Getting the current temperature!");
     return TEMP_SENSOR.currentTemperature;
-  },
-  randomizeTemperature: function() {
-    // randomize temperature to a value between 0 and 100
-    pyshell.on('message', function (message) {
-           
-      console.log(message);
-      TEMP_SENSOR.currentTemperature = parseInt(message);
+},
 
+randomizeTemperature: function() {
+    pyshell.on('message', function (message) {
+               TEMP_SENSOR.currentTemperature = parseInt(message);
     });
-  }
+    console.log('here');
+}
 }
 
 
@@ -39,22 +39,21 @@ sensor.pincode = "031-45-154";
 // Add the actual TemperatureSensor Service.
 // We can see the complete list of Services and Characteristics in `lib/gen/HomeKitTypes.js`
 sensor
-  .addService(Service.TemperatureSensor)
-  .getCharacteristic(Characteristic.CurrentTemperature)
-  .on('get', function(callback) {
-    
+.addService(Service.TemperatureSensor)
+.getCharacteristic(Characteristic.CurrentTemperature)
+.on('get', function(callback) {
     // return our current value
     callback(null, TEMP_SENSOR.getTemperature());
-  });
+});
 
 // randomize our temperature reading every 3 seconds
 setInterval(function() {
-  
-  TEMP_SENSOR.randomizeTemperature();
-  
-  // update the characteristic value so interested iOS devices can get notified
-  sensor
-    .getService(Service.TemperatureSensor)
-    .setCharacteristic(Characteristic.CurrentTemperature, TEMP_SENSOR.currentTemperature);
-  
+            
+            TEMP_SENSOR.randomizeTemperature();
+            
+            // update the characteristic value so interested iOS devices can get notified
+            sensor
+            .getService(Service.TemperatureSensor)
+            .setCharacteristic(Characteristic.CurrentTemperature, TEMP_SENSOR.currentTemperature);
+            
 }, 3000);
