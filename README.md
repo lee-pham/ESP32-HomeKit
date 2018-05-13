@@ -1,2 +1,2 @@
 # homekit
-homekit integration with Raspberry Pi and Particle Photon
+Attempted HomeKit integration with ESP32
